@@ -3,9 +3,7 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
-import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "  PRIMARY KEY (`id`),\n" +
                     "  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)");
             util.getStatement().execute("COMMIT");
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
     }
@@ -33,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Util util = new Util();) {
             util.getStatement().execute("DROP TABLE test0.users");
             util.getStatement().execute("COMMIT");
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
     }
@@ -43,7 +41,7 @@ public class UserDaoJDBCImpl implements UserDao {
             util.getStatement().execute(String.format ("INSERT INTO test0.users (name, lastName, age) VALUES ('%s', '%s', %d)", name, lastName, age));
             util.getStatement().execute("COMMIT");
             System.out.printf("User с именем – %s добавлен в базу данных\n", name);
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
     }
@@ -53,7 +51,7 @@ public class UserDaoJDBCImpl implements UserDao {
             util.getStatement().execute(String.format ("DELETE FROM test0.users WHERE id = %d", id));
             util.getStatement().execute("COMMIT");
             System.out.printf("User с id – %d исчез из реальности будто его никогда и не существовало\n живи с этим\n", id);
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
     }
@@ -70,7 +68,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setId((long) resultset.getInt("id"));
                 users.add(user);
             }
-        } catch (SQLException | IOException e) {
+        } catch (Exception e) {
             e.fillInStackTrace();
         }
         return users;
