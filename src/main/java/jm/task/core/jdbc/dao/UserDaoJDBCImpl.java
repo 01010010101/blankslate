@@ -16,14 +16,18 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.createConnection(); Statement statement = connection.createStatement()) {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
-            statement.execute("CREATE TABLE `test0`.`users` (\n" +
+            Boolean b0 = statement.execute("CREATE TABLE `test0`.`users` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `name` VARCHAR(255) NOT NULL,\n" +
                     "  `lastName` VARCHAR(255) NOT NULL,\n" +
                     "  `age` INT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)");
-           statement.execute("COMMIT");
+            if (b0) {
+                statement.execute("COMMIT");
+            } else {
+                statement.execute("ROLLBACK");
+            }
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             e.fillInStackTrace();
@@ -35,8 +39,12 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.createConnection(); Statement statement = connection.createStatement()) {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
-            statement.execute("DROP TABLE test0.users");
-            statement.execute("COMMIT");
+            Boolean b0 = statement.execute("DROP TABLE test0.users");
+            if (b0) {
+                statement.execute("COMMIT");
+            } else {
+                statement.execute("ROLLBACK");
+            }
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             e.fillInStackTrace();
@@ -55,8 +63,12 @@ public class UserDaoJDBCImpl implements UserDao {
             prepared.setString(1, name);
             prepared.setString(2, lastName);
             prepared.setByte(3, age);
-            prepared.execute();
-            statement.execute("COMMIT");
+            Boolean b0 = prepared.execute();
+            if (b0) {
+                statement.execute("COMMIT");
+            } else {
+                statement.execute("ROLLBACK");
+            }
             connection.setAutoCommit(true);
             System.out.printf("User с именем – %s добавлен в базу данных\n", name);
         } catch (SQLException e) {
@@ -73,8 +85,12 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
             prepared.setLong(1, id);
-            prepared.execute();
-            statement.execute("COMMIT");
+            Boolean b0 = prepared.execute();
+            if (b0) {
+                statement.execute("COMMIT");
+            } else {
+                statement.execute("ROLLBACK");
+            }
             connection.setAutoCommit(true);
             System.out.printf("User с id – %d исчез из реальности будто его никогда и не существовало\n живи с этим\n", id);
         } catch (SQLException e) {
@@ -104,8 +120,12 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.createConnection(); Statement statement = connection.createStatement()) {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
-            statement.execute("DELETE FROM test0.users");
-            statement.execute("COMMIT");
+            Boolean b0 = statement.execute("DELETE FROM test0.users");
+            if (b0) {
+                statement.execute("COMMIT");
+            } else {
+                statement.execute("ROLLBACK");
+            }
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             e.fillInStackTrace();
