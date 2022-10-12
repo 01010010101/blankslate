@@ -4,32 +4,62 @@ import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDao userDaoJDBC = new UserDaoJDBCImpl();
+
+
+    public UserServiceImpl() {
+    }
 
     public void createUsersTable() {
-        userDaoJDBC.createUsersTable();
+        try {
+            UserDao userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.createUsersTable();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void dropUsersTable() {
-        userDaoJDBC.dropUsersTable();
+        try {
+            UserDao userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.dropUsersTable();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        userDaoJDBC.saveUser(name, lastName, age);
+        try {
+            UserDao userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.saveUser(name, lastName, age);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void removeUserById(long id) {
-        userDaoJDBC.removeUserById(id);
+        try {
+            UserDao userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.removeUserById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public List<User> getAllUsers() {
+        UserDao userDaoJDBC = new UserDaoJDBCImpl();
         return userDaoJDBC.getAllUsers();
     }
 
     public void cleanUsersTable() {
-        userDaoJDBC.cleanUsersTable();
+        try {
+            UserDao userDaoJDBC = new UserDaoJDBCImpl();
+            userDaoJDBC.cleanUsersTable();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
