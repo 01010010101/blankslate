@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">
+
+<hibernate-mapping>
+    <class name="jm.task.core.jdbc.model.User" table="users">
+        <id name="id">
+            <generator class="assigned"></generator>
+        </id>
+
+        <property name="name"></property>
+        <property name="lastName"></property>
+        <property name="age"></property>
+
+    </class>
+
+</hibernate-mapping><?xml version='1.0' encoding='UTF-8'?>
