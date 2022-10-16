@@ -14,16 +14,16 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //UserServiceImpl service = new UserServiceImpl();
-        //service.createUsersTable();
-//        service.saveUser("Alla", "Pugacheva", (byte) 107);
-//        service.saveUser("Vasya", "Pupkeen", (byte) 12);
-//        service.saveUser("Goro", "Majima", (byte) 55);
-//        service.saveUser("Monkey", "Nonhuman", (byte) 5);
-//        List<User> list = service.getAllUsers();
-//        for (User user : list) {
-//            System.out.println(user.toString());
-//        }
+/*       UserServiceImpl service = new UserServiceImpl();
+        service.createUsersTable();
+        service.saveUser("Alla", "Pugacheva", (byte) 107);
+        service.saveUser("Vasya", "Pupkeen", (byte) 12);
+        service.saveUser("Goro", "Majima", (byte) 55);
+        service.saveUser("Monkey", "Nonhuman", (byte) 5);
+        List<User> list = service.getAllUsers();
+        for (User user : list) {
+            System.out.println(user.toString());
+        }*/
         hibernateTestRun();
         //service.cleanUsersTable();
         //service.dropUsersTable();
@@ -41,7 +41,7 @@ public class Main {
 
         User user = new User();
 
-       // user.setId(101L);
+        user.setId(101L);
         user.setName("Milfa");
         user.setLastName("Lolita");
         user.setAge((byte) 15);

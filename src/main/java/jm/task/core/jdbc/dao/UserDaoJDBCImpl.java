@@ -23,7 +23,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "  `age` INT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)");
-            if (b0) {
+            if (true) {
                 statement.execute("COMMIT");
             } else {
                 statement.execute("ROLLBACK");
@@ -40,7 +40,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
             Boolean b0 = statement.execute("DROP TABLE test0.users");
-            if (b0) {
+            if (true) {
                 statement.execute("COMMIT");
             } else {
                 statement.execute("ROLLBACK");
@@ -64,9 +64,11 @@ public class UserDaoJDBCImpl implements UserDao {
             prepared.setString(2, lastName);
             prepared.setByte(3, age);
             Boolean b0 = prepared.execute();
-            if (b0) {
+            if (true) {
+                System.out.println("Success");
                 statement.execute("COMMIT");
             } else {
+                System.out.println("Fail");
                 statement.execute("ROLLBACK");
             }
             connection.setAutoCommit(true);
@@ -86,7 +88,7 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.execute("START TRANSACTION");
             prepared.setLong(1, id);
             Boolean b0 = prepared.execute();
-            if (b0) {
+            if (true) {
                 statement.execute("COMMIT");
             } else {
                 statement.execute("ROLLBACK");
@@ -121,7 +123,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             statement.execute("START TRANSACTION");
             Boolean b0 = statement.execute("DELETE FROM test0.users");
-            if (b0) {
+            if (true) {
                 statement.execute("COMMIT");
             } else {
                 statement.execute("ROLLBACK");
