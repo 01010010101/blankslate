@@ -94,24 +94,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
-        Session session = factory.openSession();
-
-        Transaction t = session.beginTransaction();
-        NativeQuery query = session.createSQLQuery("SELECT * from test0.users");
-/*        while (resultset.next()) {
-            User user = new User();
-            user.setName(resultset.getString("name"));
-            user.setLastName(resultset.getString("lastName"));
-            user.setAge((byte) resultset.getInt("age"));
-            user.setId((long) resultset.getInt("id"));
-            users.add(user);*/
-        }
-        query.executeUpdate();
-        t.commit();
         return null;
-        factory.close();
-        session.close();
     }
 
     @Override
