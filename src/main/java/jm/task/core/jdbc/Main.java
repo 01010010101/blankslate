@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-/*       UserServiceImpl service = new UserServiceImpl();
+/*      UserServiceImpl service = new UserServiceImpl();
         service.createUsersTable();
         service.saveUser("Alla", "Pugacheva", (byte) 107);
         service.saveUser("Vasya", "Pupkeen", (byte) 12);
@@ -24,7 +24,7 @@ public class Main {
         for (User user : list) {
             System.out.println(user.toString());
         }*/
-        hibernateTestRun();
+        //hibernateTestRun();
         //service.cleanUsersTable();
         //service.dropUsersTable();
     }
