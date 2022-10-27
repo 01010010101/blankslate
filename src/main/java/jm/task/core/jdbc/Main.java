@@ -24,32 +24,7 @@ public class Main {
         for (User user : list) {
             System.out.println(user.toString());
         }
-        //hibernateTestRun();
         service.cleanUsersTable();
         service.dropUsersTable();
-    }
-
-    private static void hibernateTestRun() {
-        //Create typesafe ServiceRegistry object
-        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-
-        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
-
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
-        Session session = factory.openSession();
-        Transaction t = session.beginTransaction();
-
-        User user = new User();
-
-        user.setId(101L);
-        user.setName("Milfa");
-        user.setLastName("Lolita");
-        user.setAge((byte) 15);
-
-        session.save(user);
-        t.commit();
-        System.out.println("successfully saved");
-        factory.close();
-        session.close();
     }
 }
