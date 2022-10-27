@@ -15,15 +15,19 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
     StandardServiceRegistry ssr;
     Metadata meta;
+
+    SessionFactory factory;
+
     public UserDaoHibernateImpl() {
         ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        factory = meta.getSessionFactoryBuilder().build();
     }
 
 
     @Override
     public void createUsersTable() {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+//        SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
 
         Transaction t = session.beginTransaction();
@@ -38,14 +42,14 @@ public class UserDaoHibernateImpl implements UserDao {
         t.commit();
         System.out.println("The table was created");
 
-        factory.close();
+        //factory.close();
         session.close();
 
     }
 
     @Override
     public void dropUsersTable() {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+//        SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
 
         Transaction t = session.beginTransaction();
@@ -54,13 +58,13 @@ public class UserDaoHibernateImpl implements UserDao {
         t.commit();
         System.out.println("The table was erased");
 
-        factory.close();
+        //factory.close();
         session.close();
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+//        SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
 
         Transaction t = session.beginTransaction();
@@ -72,13 +76,13 @@ public class UserDaoHibernateImpl implements UserDao {
         t.commit();
         System.out.println("successfully saved");
 
-        factory.close();
+        //factory.close();
         session.close();
     }
 
     @Override
     public void removeUserById(long id) {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+//        SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
 
         Transaction t = session.beginTransaction();
@@ -88,18 +92,29 @@ public class UserDaoHibernateImpl implements UserDao {
         t.commit();
         System.out.printf("User с id – %d исчез из реальности будто его никогда и не существовало\n живи с этим\n", id);
 
-        factory.close();
+        //factory.close();
         session.close();
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
-    }
+//            SessionFactory factory = meta.getSessionFactoryBuilder().build();
+            Session session = factory.openSession();
+
+            Transaction t = session.beginTransaction();
+            List<User> list = session.createQuery("SELECT a FROM User a", User.class).getResultList();
+            t.commit();
+            System.out.println("Gotcha");
+//        list.forEach(System.out::println);
+
+            //factory.close();
+            session.close();
+            return list;
+        }
 
     @Override
     public void cleanUsersTable() {
-        SessionFactory factory = meta.getSessionFactoryBuilder().build();
+//        SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
 
         Transaction t = session.beginTransaction();
@@ -108,7 +123,7 @@ public class UserDaoHibernateImpl implements UserDao {
         t.commit();
         System.out.println("The table is squeaky clean");
 
-        factory.close();
+        //factory.close();
         session.close();
     }
 }
